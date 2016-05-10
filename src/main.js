@@ -1,8 +1,22 @@
 import Vue from 'vue';
-import App from './App';
+import VueRouter from 'vue-router';
+import Apps from './App';
+import About from './components/About';
+import Contact from './components/Contact';
+Vue.use(VueRouter);
+const router = new VueRouter();
 
-/* eslint-disable no-new */
-new Vue({
-  el: 'body',
-  components: { App },
+router.map({
+  '/': {
+    component: Apps,
+  },
+  '/about': {
+    component: About,
+  },
+  '/contact': {
+    component: Contact,
+  },
 });
+
+const App = Vue.extend({});
+router.start(App, '#app');
