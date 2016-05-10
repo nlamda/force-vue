@@ -4,7 +4,8 @@ import VueRouter from 'vue-router';
 import App from './App';
 import About from './components/About';
 import Contact from './components/Contact';
-/* eslint-disable no-new */
+import ViewPerson from './components/ViewPerson';
+import ViewPlanets from './components/ViewPlanets';
 
 // Setup Vue to use Router
 Vue.use(VueRouter);
@@ -13,8 +14,19 @@ const rootComponent = Vue.extend({});
 
 const router = new VueRouter();
 router.map({
-  '/home': {
+  '/': {
     component: App,
+    subRoutes: {
+      '/': {
+        component: ViewPerson,
+      },
+      '/person': {
+        component: ViewPerson,
+      },
+      '/planets': {
+        component: ViewPlanets,
+      },
+    },
   },
   '/about': {
     component: About,
@@ -25,7 +37,8 @@ router.map({
 });
 router.redirect({
 // redirect to home if not a correct route!
-  '*': '/home',
+  '*': '/',
 });
 // Start view at id app
 router.start(rootComponent, '#app');
+
